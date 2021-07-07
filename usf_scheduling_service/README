@@ -1,0 +1,24 @@
+/**
+* CARMA Streets scheduling algorithm designed for stop-controlled intersections - version 1.0
+* 
+*
+* This service will continuously consume vehicle information from a designed Kafka topic, will schedule vehicles
+* and estimate their critical time steps, and finally, will produce the scheduling results into another Kafka topic.
+*
+* This service is designed for cooperation Class D C-ADS equipped vehicles.
+*
+* Four different state based on the algorithm design is defined for each D C-ADS equipped vehicles:
+*	- Entering Vehicle (EV): Vehicles that are approaching the intersection and cannot stop at the stop bar in the next time step
+*	- Ready-to-Depart Vehicles (RDV): Vehicles that are stopped at the stop bars and are ready to enter the intersection box. 
+*		Note that, if there is more than one vehicle from an entry lane stopped behind the intersection box, only the leading vehicle 
+*		will be considered as RDV and the rest will be still considered as EVs. Each RDV is associated with a fixed order index in the RDV departure sequence.
+*	- Departing Vehicles (DV): Vehicles that are moving within the intersection box. Note that, vehicles’ cooperation class determines whether one or more 
+*		vehicles can use the intersection box simultaneously.
+*	- Leaving Vehicles (LV): Vehicles that already departed the intersection box 
+*
+* Notes: 
+*	- the consumer and producer functions must be added.
+*	- the function for identifying each vehicle's lane index and the Map class information must be updated.
+*
+* 
+*/
